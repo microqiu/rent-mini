@@ -1,0 +1,19 @@
+<view class="card" style="margin-top: 10px;">
+    <view style="font-size: 14px; color: #999; display: flex; justify-content: space-between; box-sizing: border-box;">
+        <view style="display: flex; align-items: center; font-size: 16px; color: #333">
+            <view style="width: 3px; height: 15px; background: #333;"></view>
+            <view style="margin-left: 5px;">房源照片</view>
+        </view>
+    </view>
+    <view style="padding: 20px 0 10px 0; display: flex; box-sizing: border-box; flex-wrap: wrap;">
+        <view style="background: #f8f6fd; margin: 0 10px 10px 0; position: relative;" class="plus" wx:for="{{photos}}" wx:key="index">
+            <image bindtap="onShowImage" data-src="{{item.url}}" src="{{item.url}}" style="width: 100%;" mode="widthFix" />
+            <view class="del" catchtap="onDel" data-index="{{index}}" >x</view>
+            <view style="color: #ffffff; text-align: center; background: #999999bb; width: 100%; position: absolute; bottom: 0; font-size: 13px;">{{item.typeName}}</view>
+        </view>
+        <picker mode="selector" range="{{typeList}}" range-key="text" bindchange="onAdd">
+            <view class="plus">+</view>
+        </picker>
+    </view>
+</view>
+<button bindtap="onSave" type="primary" style="position: fixed; width: 100%; bottom: env(safe-area-inset-bottom)">保存</button>

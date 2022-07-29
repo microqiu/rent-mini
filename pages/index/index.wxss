@@ -1,0 +1,47 @@
+.house-item {
+    display: flex;
+    flex-direction: column;
+}
+
+.house-name {
+    background-color: #f4f4f4;
+    padding: 10px 20px 10px 20px;
+    color: #908e9a;
+    font-size: 14px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.house-building {
+    padding: 20px;
+}
+
+.house-building .text {
+    background-color: #555574;
+    color: #cdced7;
+    font-size: 14px;
+    padding: 2px 5px 2px 5px;
+    border-radius: 3px;
+}
+
+.house-detail-container {
+    margin-top: 10px;
+    display: flex;
+    flex-direction: row;
+    height: 80px;
+}
+
+.line-left {
+    width: 5px;
+    height: 100%;
+    background-color: #be696a;
+}
+
+.house-detail-con {
+    background-color: #f8f3f2;
+    display: flex;
+    flex-direction: column;
+    padding: 13px;
+    flex: 1;
+}

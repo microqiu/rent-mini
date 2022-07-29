@@ -1,0 +1,183 @@
+<!--pages/house/full-rent.wxml-->
+<view class="container" wx:if="{{active === 0}}">
+    <view class="heade">
+        <view class="title">新增整租房源</view>
+        <view class="close">关闭</view>
+    </view>
+    <view style="width: 100%;" class="step-container">
+        <view class="step">
+            <view class="circle active">+</view>
+            <view>地址</view>
+        </view>
+        <view class="line"></view>
+        <view class="step">
+            <view class="circle"></view>
+            <view>户型</view>
+        </view>
+    </view>
+    <view style="width: 100%; padding-top: 20px; background: #fff;">
+        <view class="list-item">
+            <view>城市</view>
+            <picker mode="selector" value="{{cityActive}}"  bindchange="onCityChange" range="{{cities}}" range-key="name">
+                <view class="item-desc" wx:if="{{cityActive === null}}">
+                    <text>请选择</text>
+                    <image src="../../assets/right.svg" mode="widthFix" style="width: 16px;" />
+                </view>
+                <view class="item-desc" wx:if="{{cityActive !== null}}">
+                    <text>{{ cities[cityActive].name }}</text>
+                </view>
+            </picker>
+        </view>
+        <view class="list-item">
+            <view>区域</view>
+            <picker mode="selector" value="{{cityAreaActive}}"  bindchange="onCityAreaChange" range="{{cityAreas}}" range-key="name">
+                <view class="item-desc" wx:if="{{cityAreaActive === null}}">
+                    <text>请选择</text>
+                    <image src="../../assets/right.svg" mode="widthFix" style="width: 16px;" />
+                </view>
+                <view class="item-desc" wx:if="{{cityAreaActive !== null}}">
+                    <text>{{ cityAreas[cityAreaActive].name }}</text>
+                </view>
+            </picker>
+        </view>
+        <view class="list-item">
+            <view>门店</view>
+            <picker mode="selector" value="{{storeActive}}"  bindchange="onStoreChange" range="{{stores}}" range-key="name">
+                <view class="item-desc" wx:if="{{storeActive === null}}">
+                    <text>请选择</text>
+                    <image src="../../assets/right.svg" mode="widthFix" style="width: 16px;" />
+                </view>
+                <view class="item-desc" wx:if="{{storeActive !== null}}">
+                    <text>{{ stores[storeActive].name }}</text>
+                </view>
+            </picker>
+        </view>
+        <view class="list-item">
+            <view>小区名称</view>
+            <view class="item-desc" bindtap="onCommuityTap" wx:if="{{community}}">
+                <text>{{community.name}}</text>
+            </view>
+            <view class="item-desc" bindtap="onCommuityTap" wx:if="{{!community}}">
+                <text>请选择</text>
+                <image src="../../assets/right.svg" mode="widthFix" style="width: 16px;" />
+            </view>
+        </view>
+
+        <view class="list-item" wx:if="{{community}}">
+            <view>商圈</view>
+            <view class="item-desc">
+                <text>{{community.businessArea}}</text>
+            </view>
+        </view>
+
+        <view class="list-item" wx:if="{{community}}">
+            <view style="width: 50px;">地址</view>
+            <view class="item-desc">
+                <text>{{community.address}}</text>
+            </view>
+        </view>
+
+        <view class="list-item">
+            <view>楼幢</view>
+            <view class="item-desc">
+                <input bindinput="bindBuildingNumber" value="{{buildingNumber}}" type="text" placeholder="请输入" style="text-align: right;" />
+            </view>
+        </view>
+        <view class="list-item">
+            <view>单元号</view>
+            <view class="item-desc">
+                <input bindinput="bindUnitNumber" value="{{unitNumber}}" type="text" placeholder="请输入" style="text-align: right;" />
+            </view>
+        </view>
+        <view class="list-item">
+            <view>室/房间号</view>
+            <view class="item-desc">
+                <input bindinput="bindRoomNumber" value="{{roomNumber}}" type="text" placeholder="请输入" style="text-align: right;" />
+            </view>
+        </view>
+    </view>
+    <view class="next"  bindtap="bindNext">
+        <view class="button">下一步</view>
+    </view>
+</view>
+
+<view class="container" wx:if="{{active === 1}}">
+    <view bindtap="onPreStemp" style="position: absolute; top: 5px; left: 10px; color: #3c80fa;">上一步</view>
+    <view class="heade">
+        <view class="title">新增整租房源</view>
+        <view class="close">关闭</view>
+    </view>
+    <view style="width: 100%;" class="step-container">
+        <view class="step">
+            <view class="circle active">+</view>
+            <view>地址</view>
+        </view>
+        <view class="line" style="background: #4e7ef2;"></view>
+        <view class="step">
+            <view class="circle active">+</view>
+            <view>户型</view>
+        </view>
+    </view>
+
+    <view class="change-house">
+        <view class="change-house-desc">
+            <text style="font-size: 15px;">改造户型吗？</text>
+            <text style="color: rgb(148, 153, 160); font-size: 14px;">有没有打隔断，或者改造房间格局</text>
+        </view>
+        <switch bindchange="onRemode" style="font-size: 14px;"></switch>
+    </view>
+
+    <view class="card">
+        <view style="display: flex; align-items: center;">
+            <view style="width: 3px; height: 15px; background: #333;"></view>
+            <text style="margin-left: 3px;">原始户型</text>
+        </view>
+        <view style="width: 100%; display: flex; flex-direction: row;">
+            <view style="padding: 10px 0; display: flex; flex: 1; flex-direction: column; align-items: center;">
+                <view>卧室</view>
+                <picker bindchange="onBedroomChange" mode="selector" range="{{bedroomSelect}}" range-key="text">
+                    <text style="color: rgb(148, 153, 160);" wx:if="{{bedroomActive === null}}">请选择</text>
+                    <text wx:else>{{bedroomSelect[bedroomActive].text}}</text>
+                </picker>
+            </view>
+            <view style="padding: 10px 0;display: flex; flex: 1; flex-direction: column; align-items: center;">
+                <view>客厅</view>
+                <picker bindchange="onLivingroomChange" mode="selector" range="{{livingroomSelect}}" range-key="text">
+                    <text style="color: rgb(148, 153, 160);" wx:if="{{livingroomActive === null}}">请选择</text>
+                    <text wx:else>{{livingroomSelect[livingroomActive].text}}</text>
+                </picker>
+            </view>
+            <view style="padding: 10px 0;display: flex; flex: 1; flex-direction: column; align-items: center;">
+                <view>厨房</view>
+                <picker bindchange="onKitchenChange" mode="selector" range="{{kitchenSelect}}" range-key="text">
+                    <text style="color: rgb(148, 153, 160);" wx:if="{{kitchenActive === null}}">请选择</text>
+                    <text wx:else>{{kitchenSelect[kitchenActive].text}}</text>
+                </picker>
+            </view>
+            <view style="padding: 10px 0;display: flex; flex: 1; flex-direction: column; align-items: center;">
+                <view>卫生间</view>
+                <picker bindchange="onBathroomChange" mode="selector" range="{{bathroomSelect}}" range-key="text">
+                    <text style="color: rgb(148, 153, 160);" wx:if="{{bathroomActive === null}}">请选择</text>
+                    <text wx:else>{{bathroomSelect[bathroomActive].text}}</text>
+                </picker>
+            </view>
+        </view>
+    </view>
+
+    <view class="card" style="display: flex; justify-content: space-between; align-items: center;">
+        <text>房态</text>
+        <picker bindchange="onHouseStatusChange" mode="selector" range="{{houseStatusSelect}}" range-key="text">
+            <view wx:if="{{houseStatusActive === null}}" style="align-items: center; display: flex;">
+                <text style="color: rgb(148, 153, 160);">请选择</text>
+                <image src="../../assets/right.svg" mode="widthFix" style="width: 16px;" />
+            </view>
+            <view wx:else>
+                {{houseStatusSelect[houseStatusActive].text}}
+            </view>
+        </picker>
+    </view>
+
+    <view class="next"  bindtap="onSave">
+        <view class="button">保存房源</view>
+    </view>
+</view>

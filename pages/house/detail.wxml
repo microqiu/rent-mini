@@ -1,0 +1,101 @@
+<!--pages/house/detail.wxml-->
+<view class="card">
+    <view style="font-size: 14px; color: #999; display: flex; justify-content: space-between; box-sizing: border-box;">
+        <text>{{detail.storeName}}</text>
+        <text class="edit">编辑</text>
+    </view>
+    <view style="margin-top: 5px">{{detail.community}}.{{detail.building}}-{{detail.unitNumber}}-{{detail.roomNumber}}</view>
+    <view class="line gray">{{detail.address}}</view>
+</view> 
+
+<view class="card" style="margin-top: 10px;">
+    <view style="font-size: 14px; color: #999; display: flex; justify-content: space-between; box-sizing: border-box;">
+        <view style="display: flex; align-items: center; font-size: 16px; color: #333">
+            <view style="width: 3px; height: 15px; background: #333;"></view>
+            <view style="margin-left: 5px;">房源照片（{{detail.photos.length}}）</view>
+        </view>
+        <text bindtap="onPhotoEdit" class="edit">编辑</text>
+    </view>
+    <view style="padding: 20px 0 10px 0; display: flex; box-sizing: border-box; flex-wrap: wrap; width: 100%;">
+        <view style="background: #f8f6fd; margin: 0 10px 10px 0; position: relative;" class="plus" wx:for="{{detail.photos}}" wx:key="index">
+            <image bindtap="onShowImage" data-src="{{item.url}}" src="{{item.url}}" style="width: 100%;" mode="widthFix" />
+            <view style="color: #ffffff; text-align: center; background: #999999bb; width: 100%; position: absolute; bottom: 0; font-size: 13px;">{{item.typeName}}</view>
+        </view>
+    </view>
+</view>
+
+<view class="card" style="margin-top: 10px">
+    <view style="font-size: 14px; color: #999; display: flex; justify-content: space-between; box-sizing: border-box;">
+        <view style="display: flex; align-items: center; font-size: 16px; color: #333">
+            <view style="width: 3px; height: 15px; background: #333;"></view>
+            <view style="margin-left: 5px;">租金信息</view>
+        </view>
+        <text bindtap="onPriceEdit" class="edit">编辑</text>
+    </view>
+    <view class="card-container">
+        <view class="describe">
+            <text>付款方式：</text>
+            <text style="color: #333333;">{{detail.priceInfo.payWay}}</text>
+        </view>
+        <view class="describe">
+            <text>租金：</text>
+            <text style="color: #333333;">{{detail.priceInfo.amount}}</text>
+        </view>
+        <view class="describe">
+            <text>押金方式：</text>
+            <text style="color: #333333;">{{detail.priceInfo.betWay}}</text>
+        </view>
+        <view class="describe">
+            <text>押金：</text>
+            <text style="color: #333333;">{{detail.priceInfo.betAmount}}</text>
+        </view>
+    </view>
+</view>
+
+<view class="card" style="margin-top: 10px">
+    <view style="font-size: 14px; color: #999; display: flex; justify-content: space-between; box-sizing: border-box;">
+        <view style="display: flex; align-items: center; font-size: 16px; color: #333">
+            <view style="width: 3px; height: 15px; background: #333;"></view>
+            <view style="margin-left: 5px;">房屋信息 </view>
+        </view>
+        <text bindtap="onInfoEdit" class="edit">编辑</text>
+    </view>
+    <view class="card-container">
+        <view class="describe">
+            <text>原始户型：</text>
+            <text style="color: #333333;">{{detail.priceInfo.payWay}}</text>
+        </view>
+        <view class="describe">
+            <text>改后户型：</text>
+            <text style="color: #333333;">{{detail.priceInfo.amount}}</text>
+        </view>
+        <view class="describe">
+            <text>面积：</text>
+            <text style="color: #333333;">{{detail.priceInfo.betWay}}</text>
+        </view>
+        <view class="describe">
+            <text>朝向：</text>
+            <text style="color: #333333;">{{detail.priceInfo.betAmount}}</text>
+        </view>
+        <view class="describe">
+            <text>装修情况：</text>
+            <text style="color: #333333;">{{detail.priceInfo.betWay}}</text>
+        </view>
+        <view class="describe">
+            <text>户型结构：</text>
+            <text style="color: #333333;">{{detail.priceInfo.betAmount}}</text>
+        </view>
+        <view class="describe" style="width: 100%;">
+            <text>楼层：</text>
+            <text style="color: #333333;">{{detail.priceInfo.betAmount}}</text>
+        </view>
+        <view class="describe" style="width: 100%;">
+            <text>房屋配置：</text>
+            <text style="color: #333333;">{{detail.priceInfo.betAmount}}</text>
+        </view>
+        <view class="describe" style="width: 100%;">
+            <text>房屋特色：</text>
+            <text style="color: #333333;">{{detail.priceInfo.betAmount}}</text>
+        </view>
+    </view>
+</view>

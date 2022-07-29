@@ -1,0 +1,3 @@
+<!--pages/test/test.wxml-->
+<input focus="{{focus}}" />
+<button bindtap="change">切换</button>

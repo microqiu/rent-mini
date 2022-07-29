@@ -1,0 +1,28 @@
+<view class="card" style="margin-top: 10px">
+    <view style="font-size: 14px; color: #999; display: flex; justify-content: space-between; box-sizing: border-box;">
+        <view style="display: flex; align-items: center; font-size: 16px; color: #333">
+            <view style="width: 3px; height: 15px; background: #333;"></view>
+            <view style="margin-left: 5px;">租金信息</view>
+        </view>
+    </view>
+    <view class="card-container">
+        <view class="item">
+            <view>付款方式</view>
+            <picker mode="multiSelector" range="{{bets}}" bindchange="onWayChange">
+                <view wx:if="{{!priceInfo.betPeriod}}" style="color: #a2a2a2; height: 30px; line-height: 30px;">请选择</view>
+                <view wx:if="{{priceInfo.betPeriod}}" style="height: 30px; line-height: 30px;">押{{priceInfo.betPeriod}}付{{priceInfo.payPeriod}}</view>
+            </picker>
+        </view>
+        <view class="item">
+            <view>月租金</view>
+            <view style=" height: 30px; line-height: 30px; text-align: center;">
+                <input bindinput="onAmountChange" value="{{priceInfo.amount}}" style="height: 30px;" type="number" placeholder="请输入" />
+            </view>
+        </view>
+        <view class="item">
+            <view>押金</view>
+            <view style="height: 30px; line-height: 30px;">{{priceInfo.betAmount}}</view>
+        </view>
+    </view>
+</view>
+<button bindtap="onSave" type="primary" style="position: fixed; width: 100%; bottom: env(safe-area-inset-bottom)">保存</button>

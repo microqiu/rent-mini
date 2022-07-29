@@ -1,0 +1,125 @@
+<view class="card" style="margin-top: 10px">
+    <view style="font-size: 14px; color: #999; display: flex; justify-content: space-between; box-sizing: border-box;">
+        <view style="display: flex; align-items: center; font-size: 16px; color: #333">
+            <view style="width: 3px; height: 15px; background: #333;"></view>
+            <view style="margin-left: 5px;">原始户型</view>
+        </view>
+    </view>
+    <view class="card-container">
+        <view class="item">
+            <view>卧室</view>
+            <picker data-name="bedroomActive" bindchange="onSelectChange" mode="selector" range="{{bedroomSelect}}" range-key="text">
+                <text style="color: rgb(148, 153, 160);" wx:if="{{bedroomActive === null}}">请选择</text>
+                <text wx:else>{{bedroomSelect[bedroomActive].text}}</text>
+            </picker>
+        </view>
+        <view class="item">
+            <view>客厅</view>
+            <picker data-name="livingroomActive" bindchange="onSelectChange" mode="selector" range="{{livingroomSelect}}" range-key="text">
+                <text style="color: rgb(148, 153, 160);" wx:if="{{livingroomActive === null}}">请选择</text>
+                <text wx:else>{{livingroomSelect[livingroomActive].text}}</text>
+            </picker>
+        </view>
+        <view class="item">
+            <view>厨房</view>
+            <picker data-name="kitchenActive" bindchange="onSelectChange" mode="selector" range="{{kitchenSelect}}" range-key="text">
+                <text style="color: rgb(148, 153, 160);" wx:if="{{kitchenActive === null}}">请选择</text>
+                <text wx:else>{{kitchenSelect[kitchenActive].text}}</text>
+            </picker>
+        </view>
+        <view class="item">
+            <view>卫生间</view>
+            <picker data-name="bathroomActive" bindchange="onSelectChange" mode="selector" range="{{bathroomSelect}}" range-key="text">
+                <text style="color: rgb(148, 153, 160);" wx:if="{{bathroomActive === null}}">请选择</text>
+                <text wx:else>{{bathroomSelect[bathroomActive].text}}</text>
+            </picker>
+        </view>
+    </view>
+</view>
+
+<view class="card" style="margin-top: 10px">
+    <view style="font-size: 14px; color: #999; display: flex; justify-content: space-between; box-sizing: border-box;">
+        <view style="display: flex; align-items: center; font-size: 16px; color: #333">
+            <view style="width: 3px; height: 15px; background: #333;"></view>
+            <view style="margin-left: 5px;">基础信息</view>
+        </view>
+    </view>
+
+    <view class="card-container">
+        <view class="item" style="width: 33%; flex: none;">
+            <view>面积(㎡)</view>
+            <view style=" height: 30px; line-height: 30px; text-align: center;">
+                <input data-name="area" bindinput="onInputChange" value="{{area}}" style="height: 30px;" type="number" placeholder="请输入" />
+            </view>
+        </view>
+        <view class="item" style="width: 33%; flex: none;">
+            <view>朝向</view>
+            <picker data-name="directionActive" bindchange="onSelectChange" mode="selector" range="{{direction}}">
+                <text style="color: rgb(148, 153, 160);" wx:if="{{directionActive === null}}">请选择</text>
+                <text wx:else>{{direction[directionActive]}}</text>
+            </picker>
+        </view>
+        <view class="item" style="width: 33%; flex: none;">
+            <view>装修</view>
+            <picker data-name="furnishActive" bindchange="onSelectChange" mode="selector" range="{{furnish}}">
+                <text style="color: rgb(148, 153, 160);" wx:if="{{furnishActive === null}}">请选择</text>
+                <text wx:else>{{furnish[furnishActive]}}</text>
+            </picker>
+        </view>
+        <view class="item" style="width: 33%; flex: none;">
+            <view>所在楼层</view>
+            <picker data-name="floorActive" bindchange="onSelectChange" mode="selector" range="{{floor}}">
+                <text style="color: rgb(148, 153, 160);" wx:if="{{floorActive === null}}">请选择</text>
+                <text wx:else>{{floor[floorActive]}}</text>
+            </picker>
+        </view>
+        <view class="item" style="width: 33%; flex: none;">
+            <view>总层数</view>
+            <picker data-name="totalFloorActive" bindchange="onSelectChange" mode="selector" range="{{floor}}">
+                <text style="color: rgb(148, 153, 160);" wx:if="{{totalFloorActive === null}}">请选择</text>
+                <text wx:else>{{floor[totalFloorActive]}}</text>
+            </picker>
+        </view>
+        <view class="item" style="width: 33%; flex: none;">
+            <view>户型</view>
+            <picker data-name="houseTypeActive" bindchange="onSelectChange" mode="selector" range="{{houseType}}">
+                <text style="color: rgb(148, 153, 160);" wx:if="{{houseTypeActive === null}}">请选择</text>
+                <text wx:else>{{houseType[houseTypeActive]}}</text>
+            </picker>
+        </view>
+    </view>
+</view>
+
+<view class="card" style="margin-top: 10px">
+    <view style="font-size: 14px; color: #999; display: flex; justify-content: space-between; box-sizing: border-box;">
+        <view style="display: flex; align-items: center; font-size: 16px; color: #333">
+            <view style="width: 3px; height: 15px; background: #333;"></view>
+            <view style="margin-left: 5px;">房屋配置</view>
+        </view>
+        <text bindtap="onCheckConfigAll" style="color: #6089f7;">{{checkConfigAll ? '重置' : '全选'}}</text>
+    </view>
+
+    <view class="house-config">
+        <view class="house-config-item" wx:for="{{houseConfigArr}}" wx:key="index">
+            <view data-index="{{index}}" bindtap="onCheckConfig" class="house-config-item-text {{item.checked ? 'active' : ''}}">{{item.text}}</view>
+        </view>
+    </view>
+</view>
+
+<view class="card" style="margin-top: 10px">
+    <view style="font-size: 14px; color: #999; display: flex; justify-content: space-between; box-sizing: border-box;">
+        <view style="display: flex; align-items: center; font-size: 16px; color: #333">
+            <view style="width: 3px; height: 15px; background: #333;"></view>
+            <view style="margin-left: 5px;">房屋特色</view>
+        </view>
+        <text bindtap="onCheckSpecialAll" style="color: #6089f7;">{{checkSpecialAll ? '重置' : '全选'}}</text>
+    </view>
+
+    <view class="house-config">
+        <view class="house-config-item" wx:for="{{houseSpecialArr}}" wx:key="index">
+            <view data-index="{{index}}" bindtap="onCheckSpecial" class="house-config-item-text {{item.checked ? 'active' : ''}}">{{item.text}}</view>
+        </view>
+    </view>
+</view>
+<view style="height: calc(env(safe-area-inset-bottom) + 50px);"></view>
+<button bindtap="onSave" type="primary" style="position: fixed; width: 100%; bottom: env(safe-area-inset-bottom)">保存</button>

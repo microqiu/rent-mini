@@ -1,0 +1,26 @@
+<view class="house-item" wx:for="{{list}}" wx:for-item="community" wx:key="index">
+
+    <view class="house-name">
+        <text>{{community.community}}</text>
+        <text>{{community.count}}套</text>
+    </view>
+
+    <view wx:for="{{community.builds}}" wx:for-item="build" wx:key="index">
+        <view class="house-building">
+            <text class="text">{{build.name}}</text>
+            <view>
+                <view bindtap="onDetail" data-id="{{house.id}}" class="house-detail-container" wx:for="{{build.houses}}" wx:for-item="house" wx:key="index">
+                    <view class="line-left"></view>
+                    <view class="house-detail-con">
+                        <view style="font-size: 17px; color: #333333;">{{house.name}}</view>
+                        <view style="color: #999999; margin-top: 10px; display: flex; justify-content: space-between;">
+                            <text>{{house.status}}</text>
+                            <text style="font-size: 14px;">租金{{house.amount}}</text>
+                        </view>
+                    </view>
+                </view>
+            </view>
+        </view>
+    </view>
+    
+</view>

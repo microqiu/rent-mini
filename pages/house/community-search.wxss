@@ -1,0 +1,59 @@
+/* pages/house/community-search.js.wxss */
+
+.search-content {
+    position: fixed;
+    width: 100%;
+    padding: 10px;
+    box-sizing: border-box;
+    height: 60px;
+    background: #fff;
+    display: flex;
+    align-items: center;
+}
+
+.search-field {
+    display: flex;
+    align-items: center;
+    background: #f5f7fb;
+    height: 40px;
+    width: 100%;
+    box-sizing: border-box;
+    border-radius: 20px;
+    padding: 0 10px;
+}
+
+.content {
+    padding: 0 10px 0 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.search-input {
+    flex: 1;
+    padding-left: 10px;
+    font-size: 14px;
+}
+
+.list-item {
+    padding: 15px 0;
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box;
+    width: 100%;
+    align-items: flex-start;
+    border-top: solid 1px #f5f5fb;
+}
+
+.list-item-name {
+    color: #333;
+    font-size: 16px;
+}
+
+.list-item-address {
+    color: #c8c8c8;
+    font-size: 12px;
+    margin-top: 5px;
+}

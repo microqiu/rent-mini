@@ -1,0 +1,96 @@
+<view class="container" bindtap="onDocumentTap">
+  <view style="position: fixed; width: 100%; top: 0; z-index: 101; background-color: #eaeaea;">
+    <view class="filter-list-fixed" id="filter-list-fixed">
+      <view class="filter-list-item" catchtap="onSeachIndexChange" id="area">
+        <view>区域</view>
+        <view class="triangle"></view>
+      </view>
+      <view class="filter-list-item" catchtap="onSeachIndexChange" id="way">
+        <view>方式</view>
+        <view class="triangle"></view>
+      </view>
+      <view class="filter-list-item" catchtap="onSeachIndexChange" id="amount">
+        <view>租金</view>
+        <view class="triangle"></view>
+      </view>
+      <view class="filter-list-item" catchtap="onSeachIndexChange" id="filter">
+        <view>筛选</view>
+        <view class="triangle"></view>
+      </view>
+    </view>
+    <view class="filter-context" wx:if="{{showController}}" catchtap="onTest">
+      <view class="filter-context-d" style="width: 100%;" wx:if="{{showController === 1}}">
+        <van-tree-select
+          style="width: 100%;"
+          items="{{ regions }}"
+          height="55vw"
+          main-active-index="{{ regionMainIndex }}"
+          active-id="{{regionActiveId}}"
+          bind:click-nav="onClickNav"
+          bind:click-item="onClickItem"
+          main-item-class="main-item-class"
+          content-item-class="content-item-class"
+        >
+        </van-tree-select>
+        <view class="sumbitter">
+          <view class="reset" catchtap="onResetSearch">重置</view>
+          <view class="look" catchtap="onSearch">查看房源</view>
+        </view>
+      </view>
+
+      <view class="filter-context-d" style="width: 100%;" wx:if="{{showController === 2}}">
+        <view style="padding: 10px;">
+          <view>整租</view>
+          <view style="display: flex;">
+            <view wx:key="id" wx:for="{{allRentData}}" bindtap="onAllRent" class="{{ item.checked ? 'all-rent-item-checked' : 'all-rent-item' }}" data-value="{{item.id}}">{{item.text}}</view>
+          </view>
+          <view style="margin-top: 20px;">合租</view>
+          <view style="display: flex;">
+            <view wx:key="id" wx:for="{{subRentData}}" bindtap="onSubRent" class="{{ item.checked ? 'all-rent-item-checked' : 'all-rent-item' }}" data-value="{{item.id}}">{{item.text}}</view>
+          </view>
+        </view>
+        <view class="sumbitter">
+          <view class="reset" catchtap="onResetSearch">重置</view>
+          <view class="look" catchtap="onSearch">查看房源</view>
+        </view>
+      </view>
+
+      <view class="filter-context-d" style="width: 100%;" wx:if="{{showController === 3}}">
+        <view style="padding: 10px;">
+          <view style="display: flex; flex-direction: column; align-items: center;">
+            <view bindtap="onPriceChecked" data-value="1" class="price-item {{priceChecked == 1 ? 'checked' : ''}}">1000以内</view>
+            <view bindtap="onPriceChecked" data-value="2" class="price-item {{priceChecked == 2 ? 'checked' : ''}}">1000-1500</view>
+            <view bindtap="onPriceChecked" data-value="3" class="price-item {{priceChecked == 3 ? 'checked' : ''}}">1500-2000</view>
+            <view bindtap="onPriceChecked" data-value="4" class="price-item {{priceChecked == 4 ? 'checked' : ''}}">2000以上</view>
+          </view>
+        </view>
+        <view class="sumbitter">
+          <view class="reset" catchtap="onResetSearch">重置</view>
+          <view class="look" catchtap="onSearch">查看房源</view>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <view class="house-list">
+    <view class="house-list-item" wx:for="{{houses}}" wx:for-item="house" wx:key="id">
+      <view class="house-list-item-icon">
+        <van-image src="/assets/house-simple.jpg" width="110px" height="82px"></van-image>
+      </view>
+      <view class="house-list-item-right">
+        <view class="house-list-item-title">{{house.community}}{{house.houseNum}}</view>
+        <view class="house-list-item-intro">14.6m2/{{house.address}}</view>
+        <view class="house-list-item-tag">
+          <view class="house-list-item-tag-item">近地铁</view>
+          <view class="house-list-item-tag-item">精装</view>
+          <view class="house-list-item-tag-item">集中供暖</view>
+          <view class="house-list-item-tag-item">随时看房</view>
+        </view>
+        <view class="house-list-item-price" style="display: none;">
+          <view>1350</view>
+          <view style="font-size: 11px;">元/月</view>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>

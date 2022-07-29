@@ -1,0 +1,18 @@
+<!--pages/house/community-search.js.wxml-->
+<view class="content">
+    <view class="search-content">
+        <view class="search-field">
+            <image src="../../assets/search.svg" style="width: 20px;" mode="widthFix" />
+            <input value="{{ keyword }}" bindconfirm="bindSearch" bindinput="bindKeywordChange" type="text" class="search-input" />
+            <image catchtap="bindRestSearch" wx:if="{{ keyword.length > 0 }}" src="../../assets/round_close_fill.svg" style="width: 15px;" mode="widthFix" />
+        </view>
+    </view>
+    
+
+    <view style="width: 100%; margin-top: 60px;">
+        <view class="list-item" wx:for="{{list}}" wx:key="id" data-index="{{index}}" bindtap="binSelect">
+            <view class="list-item-name">{{ item.name }}</view>
+            <view class="list-item-address">{{item.address}}</view>
+        </view>
+    </view>
+</view>
