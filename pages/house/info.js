@@ -43,7 +43,7 @@ Page({
             '独卫'
         ],
         checkConfigAll: false,
-        checkSpeckalAll: false,
+        checkSpecialAll: false,
 
         bedroomActive: null,
         bedroomSelect: [
@@ -185,6 +185,76 @@ Page({
                 }
             })
         }
+
+        if (detail.direction) {
+            this.data.direction.forEach((item, index) => {
+                if (item === detail.direction) {
+                    this.data.directionActive = index;
+                }
+            })
+        }
+
+        if (detail.furnish) {
+            this.data.furnish.forEach((item, index) => {
+                if (item === detail.furnish) {
+                    this.data.furnishActive = index;
+                }
+            })
+        }
+
+        if (detail.floor) {
+            this.data.floor.forEach((item, index) => {
+                if (item === detail.floor) {
+                    this.data.floorActive = index;
+                }
+            })
+        }
+
+        if (detail.totalFloor) {
+            this.data.floor.forEach((item, index) => {
+                if (item === detail.totalFloor) {
+                    this.data.totalFloorActive = index;
+                }
+            })
+        }
+
+        if (detail.houseType) {
+            this.data.houseType.forEach((item, index) => {
+                if (item === detail.houseType) {
+                    this.data.houseTypeActive = index;
+                }
+            })
+        }
+        if (detail.houseConfig) {
+            let checkdCount = 0;
+            const hca = detail.houseConfig.split(',');
+            this.data.houseConfigArr.forEach(item => {
+                if (hca.includes(item.text)) {
+                    item.checked = true;
+                    checkdCount++;
+                }
+            })
+            if (checkdCount === this.data.houseConfigArr.length) {
+                this.data.checkConfigAll = true;
+            }
+        }
+
+        if (detail.houseSpecial) {
+            let checkdCount = 0;
+            const hsa = detail.houseSpecial.split(',');
+            this.data.houseSpecialArr.forEach(item => {
+                if (hsa.includes(item.text)) {
+                    item.checked = true;
+                    checkdCount++;
+                }
+            })
+            if (checkdCount === this.data.houseSpecialArr.length) {
+                this.data.checkSpecialAll = true;
+            }
+        }
+
+        this.data.detail = detail;
+
         this.setData({
             ...this.data
         })
@@ -254,7 +324,7 @@ Page({
         const { bedroomActive, bedroomSelect, livingroomActive, livingroomSelect, 
             kitchenActive, kitchenSelect, bathroomActive, bathroomSelect,
             area, directionActive, direction, furnishActive, furnish, totalFloorActive, floorActive, floor,
-            houseConfigArr, houseSpecialArr
+            houseConfigArr, houseSpecialArr, houseType, houseTypeActive
         } = this.data;
         if (bedroomActive !== null) {
             data.bedroomCount = bedroomSelect[bedroomActive].value;
@@ -275,10 +345,13 @@ Page({
             data.direction = direction[directionActive];
         }
         if (furnishActive !== null) {
-            data.furnishActive = furnish[furnishActive];
+            data.furnish = furnish[furnishActive];
         }
         if (floorActive !== null) {
             data.floor = floor[floorActive];
+        }
+        if (houseTypeActive !== null) {
+            data.houseType = houseType[houseTypeActive];
         }
         if (totalFloorActive !== null) {
             data.totalFloor = floor[totalFloorActive];
@@ -295,6 +368,14 @@ Page({
         } else {
             data.houseSpecial = '';
         }
+        data.id = this.data.id;
         console.log(data);
+        http.post(`/api/house/${data.id}/info`, data, res => {
+            if (res.code === 0) {
+                wx.navigateBack({
+                    delta: 0,
+                  })
+            }
+        });
     }
 })

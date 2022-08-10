@@ -151,7 +151,6 @@ Page({
     let allRentSearch = this.data.allRentData.filter(item => item.checked).map(item => item.id);
     let subRentSearch = this.data.subRentData.filter(item => item.checked).map(item => item.id);
 
-
     http.post('/api/search', {
       district: districtMap,
       allRent: allRentSearch,

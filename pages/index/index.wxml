@@ -22,5 +22,6 @@
             </view>
         </view>
     </view>
-    
 </view>
+
+<t-fab icon="add" bind:click="onAdd" style="position: fixed; bottom: 40px; right: 0;"></t-fab>

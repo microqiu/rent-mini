@@ -2,10 +2,17 @@
 <view class="card">
     <view style="font-size: 14px; color: #999; display: flex; justify-content: space-between; box-sizing: border-box;">
         <text>{{detail.storeName}}</text>
-        <text class="edit">编辑</text>
+        <text class="edit">编辑</text>  
     </view>
     <view style="margin-top: 5px">{{detail.community}}.{{detail.building}}-{{detail.unitNumber}}-{{detail.roomNumber}}</view>
     <view class="line gray">{{detail.address}}</view>
+    <t-grid column="{{4}}">
+        <t-grid-item wx:key="index" wx:for="{{detail.houseRooms}}" t-class-text="text" t-class-content="external-class-content">
+            <t-button t-class="external-class" theme="default" size="small" shape="square">
+                {{ item.name }}
+            </t-button>
+        </t-grid-item>    
+    </t-grid>
 </view> 
 
 <view class="card" style="margin-top: 10px;">
@@ -63,39 +70,43 @@
     <view class="card-container">
         <view class="describe">
             <text>原始户型：</text>
-            <text style="color: #333333;">{{detail.priceInfo.payWay}}</text>
+            <text style="color: #333333;">{{(detail.originConfig.bedroomCount === null ? '-' : detail.originConfig.bedroomCount) + '室' + (detail.originConfig.livingroomCount === null ? '-' : detail.originConfig.livingroomCount) + '厅' + (detail.originConfig.kitchenCount === null ? '-' : detail.originConfig.kitchenCount) + '厨' + (detail.originConfig.bathroomCount === null ? '-' : detail.originConfig.bathroomCount) + '卫' }}</text>
         </view>
         <view class="describe">
             <text>改后户型：</text>
-            <text style="color: #333333;">{{detail.priceInfo.amount}}</text>
+            <text style="color: #333333;">{{(detail.config.bedroomCount === null ? '-' : detail.config.bedroomCount) + '室' + (detail.config.livingroomCount === null ? '-' : detail.config.livingroomCount) + '厅' + (detail.config.kitchenCount === null ? '-' : detail.config.kitchenCount) + '厨' + (detail.config.bathroomCount === null ? '-' : detail.config.bathroomCount) + '卫' }}</text>
         </view>
         <view class="describe">
             <text>面积：</text>
-            <text style="color: #333333;">{{detail.priceInfo.betWay}}</text>
+            <text style="color: #333333;">{{detail.area || '-'}}㎡</text>
         </view>
         <view class="describe">
             <text>朝向：</text>
-            <text style="color: #333333;">{{detail.priceInfo.betAmount}}</text>
+            <text style="color: #333333;">{{detail.direction || '-'}}</text>
         </view>
         <view class="describe">
             <text>装修情况：</text>
-            <text style="color: #333333;">{{detail.priceInfo.betWay}}</text>
+            <text style="color: #333333;">{{detail.furnish || '-'}}</text>
         </view>
         <view class="describe">
             <text>户型结构：</text>
-            <text style="color: #333333;">{{detail.priceInfo.betAmount}}</text>
+            <text style="color: #333333;">{{detail.houseType || '-'}}</text>
         </view>
-        <view class="describe" style="width: 100%;">
+        <view class="describe">
             <text>楼层：</text>
-            <text style="color: #333333;">{{detail.priceInfo.betAmount}}</text>
+            <text style="color: #333333;">{{detail.floor || '-'}}</text>
         </view>
-        <view class="describe" style="width: 100%;">
-            <text>房屋配置：</text>
-            <text style="color: #333333;">{{detail.priceInfo.betAmount}}</text>
+        <view class="describe">
+            <text>到期：</text>
+            <text style="color: #333333;">{{detail.expireDate || '-'}}</text>
         </view>
-        <view class="describe" style="width: 100%;">
-            <text>房屋特色：</text>
-            <text style="color: #333333;">{{detail.priceInfo.betAmount}}</text>
+        <view class="describe" style="width: 100%; align-items: flex-start; height: auto;">
+            <view>房屋配置：</view>
+            <view style="color: #333333; flex: 1;">{{detail.houseConfig || '-'}}</view>
+        </view>
+        <view class="describe" style="width: 100%; align-items: flex-start; height: auto;">
+            <view>房屋特色：</view>
+            <view style="color: #333333; flex: 1;">{{detail.houseSpecial || '-'}}</view>
         </view>
     </view>
 </view>

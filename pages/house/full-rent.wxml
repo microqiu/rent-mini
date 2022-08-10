@@ -1,7 +1,7 @@
 <!--pages/house/full-rent.wxml-->
 <view class="container" wx:if="{{active === 0}}">
     <view class="heade">
-        <view class="title">新增整租房源</view>
+        <view class="title">新增房源</view>
         <view class="close">关闭</view>
     </view>
     <view style="width: 100%;" class="step-container">
@@ -16,6 +16,18 @@
         </view>
     </view>
     <view style="width: 100%; padding-top: 20px; background: #fff;">
+        <view class="list-item">
+            <view>类型</view>
+            <picker mode="selector" value="{{typeActive}}"  bindchange="onTypeChange" range="{{types}}" range-key="text">
+                <view class="item-desc" wx:if="{{typeActive === null}}">
+                    <text>请选择</text>
+                    <image src="../../assets/right.svg" mode="widthFix" style="width: 16px;" />
+                </view>
+                <view class="item-desc" wx:if="{{typeActive !== null}}">
+                    <text>{{ types[typeActive].text }}</text>
+                </view>
+            </picker>
+        </view>
         <view class="list-item">
             <view>城市</view>
             <picker mode="selector" value="{{cityActive}}"  bindchange="onCityChange" range="{{cities}}" range-key="name">
@@ -95,6 +107,7 @@
                 <input bindinput="bindRoomNumber" value="{{roomNumber}}" type="text" placeholder="请输入" style="text-align: right;" />
             </view>
         </view>
+        
     </view>
     <view class="next"  bindtap="bindNext">
         <view class="button">下一步</view>
@@ -130,7 +143,7 @@
     <view class="card">
         <view style="display: flex; align-items: center;">
             <view style="width: 3px; height: 15px; background: #333;"></view>
-            <text style="margin-left: 3px;">原始户型</text>
+            <text style="margin-left: 3px;">户型</text>
         </view>
         <view style="width: 100%; display: flex; flex-direction: row;">
             <view style="padding: 10px 0; display: flex; flex: 1; flex-direction: column; align-items: center;">
@@ -162,6 +175,19 @@
                 </picker>
             </view>
         </view>
+    </view>
+
+    <view class="card" style="display: flex; justify-content: space-between; align-items: center;">
+        <text>到期时间</text>
+        <picker bindchange="onExpireDateChange" mode="date">
+            <view wx:if="{{expireDate === null}}" style="align-items: center; display: flex;">
+                <text style="color: rgb(148, 153, 160);">请选择</text>
+                <image src="../../assets/right.svg" mode="widthFix" style="width: 16px;" />
+            </view>
+            <view wx:else>
+                {{expireDate}}
+            </view>
+        </picker>
     </view>
 
     <view class="card" style="display: flex; justify-content: space-between; align-items: center;">

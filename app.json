@@ -10,7 +10,8 @@
         "pages/house/detail",
         "pages/house/image",
         "pages/house/price",
-        "pages/house/info"
+        "pages/house/info",
+        "pages/house/room"
     ],
     "usingComponents": {},
     "window": {

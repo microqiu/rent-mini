@@ -36,6 +36,12 @@ Page({
         wx.navigateTo({
           url: `/pages/house/detail?id=${e.currentTarget.dataset.id}`,
         })
+    },
+
+    onAdd(e) {
+        wx.navigateTo({
+          url: '/pages/house/full-rent',
+        })
     }
 
 })

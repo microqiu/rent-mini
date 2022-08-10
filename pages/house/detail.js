@@ -1,4 +1,5 @@
 const http = require('../../utils/http');
+const moment = require('moment')
 Page({
 
     data: {
@@ -15,6 +16,7 @@ Page({
     onShow() {
         http.get(`/api/house/${this.data.id}`, res => {
             if (res.code === 0) {
+                res.data.expireDate = moment(res.data.expireDate).format('yyyy-MM-DD');
                 this.setData({
                     detail: res.data
                 })

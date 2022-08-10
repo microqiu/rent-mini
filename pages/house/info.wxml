@@ -49,7 +49,7 @@
         <view class="item" style="width: 33%; flex: none;">
             <view>面积(㎡)</view>
             <view style=" height: 30px; line-height: 30px; text-align: center;">
-                <input data-name="area" bindinput="onInputChange" value="{{area}}" style="height: 30px;" type="number" placeholder="请输入" />
+                <input data-name="area" bindinput="onInputChange" value="{{detail.area}}" style="height: 30px;" type="number" placeholder="请输入" />
             </view>
         </view>
         <view class="item" style="width: 33%; flex: none;">

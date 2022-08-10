@@ -1,0 +1,50 @@
+<view style="margin-top: 10px;"></view>
+<t-input label="房间名" placeholder="请输入房间名" />
+<t-input label="价格" placeholder="请输入价格" suffix="元" />
+<t-input label="面积" placeholder="请输入面积" suffix="㎡" />
+<view class="pannel-item" bind:tap="onClickPicker" data-key="status">
+    <view class="pannel-label">房间朝向</view>
+    <view class="pannel-text {{directionCurrentValue.length ? '' : 'empty'}}"> {{directionCurrentValue || '选择朝向' }}</view>
+    <t-icon name="chevron-right" color="rgba(0, 0, 0, 0.26)" size="24px" />
+</view>
+<t-divider></t-divider>
+<view class="pannel-item" bind:tap="onClickPicker" data-key="status">
+    <view class="pannel-label">房间状态</view>
+    <view class="pannel-text {{statusCurrentValue !== null ? '' : 'empty'}}"> {{statusCurrentValue!=null ? status[statusCurrentValue].label : '选择状态' }}</view>
+    <t-icon name="chevron-right" color="rgba(0, 0, 0, 0.26)" size="24px" />
+</view>
+<t-divider></t-divider>
+<view class="pannel-item" bind:tap="onClickPicker" data-key="date">
+    <view class="pannel-label">到期时间</view>
+    <view class="pannel-text {{dateCurrentValue.length ? '' : 'empty'}}"> {{dateCurrentValue || '选择日期' }}</view>
+    <t-icon name="chevron-right" color="rgba(0, 0, 0, 0.26)" size="24px" />
+</view>
+
+
+<t-picker
+    visible="{{statusVisible}}"
+    value="statusValue"
+    data-key="status"
+    title="选择状态"
+    cancelBtn="取消"
+    confirmBtn="确认"
+    bindchange="onPickerChange"
+>
+    <t-picker-item options="{{status}}"></t-picker-item>
+</t-picker>
+
+<t-picker
+  visible="{{dateVisible}}"
+  value="{{dateValue}}"
+  data-key="date"
+  title="{{pickerTitle}}"
+  cancelBtn="取消"
+  confirmBtn="确认"
+  bindchange="onPickerChange"
+  bindpick="onColumnChange"
+  bindcancel="onPickerCancel"
+>
+  <t-picker-item options="{{years}}"></t-picker-item>
+  <t-picker-item options="{{months}}"></t-picker-item>
+  <t-picker-item options="{{days}}"></t-picker-item>
+</t-picker>

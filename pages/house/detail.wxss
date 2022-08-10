@@ -54,3 +54,17 @@ Page {
     flex-wrap: wrap;
     margin-top: 15px;
 }
+
+.rooms {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+.room {
+    height: 30px;
+    line-height: 30px;
+    padding: 0 10px;
+    width: 25%;
+}

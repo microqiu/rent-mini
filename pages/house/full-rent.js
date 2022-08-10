@@ -1,9 +1,19 @@
 const http  = require('../../utils/http');
 
 Page({
-
     data: {
         type: 1,
+        typeActive: null,
+        types: [
+            {
+                text: '整租',
+                value: 1
+            },
+            {
+                text: '合租',
+                value: 2
+            }
+        ],
         steps: [
             {
               text: '步骤一',
@@ -104,7 +114,7 @@ Page({
               },
           ],
 
-          active: 1,
+          active: 0,
 
           cities: [],
           cityActive: null,
@@ -125,6 +135,8 @@ Page({
           roomNumber: null,
 
           remode: 0,
+
+          expireDate: null
     },
 
     onLoad(options) {
@@ -320,11 +332,25 @@ Page({
         })
     },
 
+    onExpireDateChange(e) {
+        console.log(e);
+        this.setData({
+            expireDate: e.detail.value
+        });
+    },
+
+    onTypeChange(e) {
+        this.setData({
+            type: this.data.types[e.detail.value].value,
+            typeActive: e.detail.value
+        })
+    },
+
     // 保存
     onSave() {
         const { bedroomActive, livingroomActive, kitchenActive, bathroomActive, houseStatusActive,
             bedroomSelect, livingroomSelect, kitchenSelect, bathroomSelect, houseStatusSelect,
-            remode
+            remode, expireDate
         } = this.data;
         if (bedroomActive === null) {
             wx.showToast({
@@ -360,6 +386,12 @@ Page({
               icon: 'none'
             })
         }
+        if (expireDate === null) {
+            wx.showToast({
+              title: '请选择到期时间',
+              icon: 'none'
+            })
+        }
         const data = {
             bedroomCount: bedroomSelect[bedroomActive].value,
             livingroomCount: livingroomSelect[livingroomActive].value,
@@ -373,13 +405,14 @@ Page({
             buildingNumber: this.data.buildingNumber,
             unitNumber: this.data.unitNumber,
             roomNumber: this.data.roomNumber,
-            type: this.data.type
+            type: this.data.type,
+            expireDate: this.data.expireDate
         };
         console.log(data);
         http.post('/api/house', data, (res) => {
             if (res.code === 0) {
-                wx.showToast({
-                  title: '添加成功',
+                wx.navigateBack({
+                  delta: 0,
                 })
             } else {
                 wx.showToast({
