@@ -48,5 +48,11 @@ Page({
         wx.navigateTo({
             url: `/pages/house/info?id=${this.data.id}&detail=${JSON.stringify(this.data.detail)}`
           });
+    },
+
+    onRoomEdit(e) {
+        wx.navigateTo({
+          url: `/pages/house/room?id=${e.currentTarget.dataset.id}&houseId=${this.data.id}`,
+        })
     }
 })

@@ -1,7 +1,7 @@
 <view style="margin-top: 10px;"></view>
-<t-input label="房间名" placeholder="请输入房间名" data-key="name" bindchange="onInputChange" />
-<t-input label="价格" placeholder="请输入价格" suffix="元" data-key="price" bindchange="onInputChange"/>
-<t-input label="面积" placeholder="请输入面积" suffix="㎡" data-key="area" bindchange="onInputChange"/>
+<t-input label="房间名" value="{{name}}" placeholder="请输入房间名" data-key="name" bindchange="onInputChange" />
+<t-input label="价格" value="{{price}}" placeholder="请输入价格" suffix="元" data-key="price" bindchange="onInputChange"/>
+<t-input label="面积" value="{{area}}" placeholder="请输入面积" suffix="㎡" data-key="area" bindchange="onInputChange"/>
 <view class="pannel-item v1" bind:tap="onClickPicker" data-key="direction">
     <view class="pannel-label">房间朝向</view>
     <view class="pannel-text {{directionCurrentValue.length ? '' : 'empty'}}"> {{directionCurrentValue || '选择朝向' }}</view>

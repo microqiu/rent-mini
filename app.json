@@ -1,11 +1,11 @@
 {
     "pages": [
+        "pages/index/index",
         "pages/test/test",
         "pages/house/full-rent",
         "pages/home/home",
         "pages/user/user",
         "pages/logs/logs",
-        "pages/index/index",
         "pages/house/community-search",
         "pages/house/detail",
         "pages/house/image",

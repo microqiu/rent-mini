@@ -8,7 +8,7 @@
     <view class="line gray">{{detail.address}}</view>
     <t-grid column="{{4}}">
         <t-grid-item wx:key="index" wx:for="{{detail.houseRooms}}" t-class-text="text" t-class-content="external-class-content">
-            <t-button t-class="external-class" theme="default" size="small" shape="square">
+            <t-button data-id="{{ item.id }}" bindtap="onRoomEdit" t-class="external-class" theme="default" size="small" shape="square">
                 {{ item.name }}
             </t-button>
         </t-grid-item>    
